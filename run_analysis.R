@@ -33,6 +33,16 @@ merged_Tbl <- rbind( trainMerged_Tbl, testMerged_Tbl )
 
 ## get mean , std, subjectID and activityLabel columns
 colNames <- names(merged_Tbl)
+## substitute abbreviation with descriptive values in the header
+colNames <- names(merged_Tbl)
+colNames <- gsub("tBody", "TimeBody", colNames)
+colNames <- gsub("^tGravity", "TimeGravity", colNames)
+colNames <- gsub("^f", "Frequency", colNames)
+colNames <- gsub("Acc", "Accelerometer", colNames)
+colNames <- gsub("Gyro", "Gyroscope", colNames)
+colNames <- gsub("Mag", "Magnitude", colNames)
+colnames(merged_Tbl)<-colNames 
+
 mean_std <- (grepl("activityLabel" , colNames) | 
                       grepl("subjectID" , colNames) | 
                      grepl("mean.." , colNames) | 
